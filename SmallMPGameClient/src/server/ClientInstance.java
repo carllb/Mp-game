@@ -24,6 +24,7 @@ public class ClientInstance implements Runnable {
 	int x, y, vx, vy;
 	World world;
 	Server server;
+	boolean quit = false;
 
 	public ClientInstance(Socket socket, Server server, int cID, World world) {
 		mySocket = socket;
@@ -46,7 +47,7 @@ public class ClientInstance implements Runnable {
 	public void run() {
 		try {
 			initClient();
-			while (mySocket.isConnected() && !mySocket.isClosed()) {
+			while (mySocket.isConnected() && !mySocket.isClosed() && !quit) {
 				startTime = System.currentTimeMillis();
 				handlePackets();		
 				endTime = System.currentTimeMillis();
@@ -69,6 +70,7 @@ public class ClientInstance implements Runnable {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			quit = true;
 		}
 	}
 	
