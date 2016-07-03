@@ -21,7 +21,7 @@ public class PacketUpdatePlayerVelocity extends Packet{
 	}
 	
 	@Override
-	public void onServer(Server server) {	
+	public synchronized void onServer(Server server) {	
 		server.gameWorld.getEntities()[cID].setVelocity(vx, vy);
 	}
 

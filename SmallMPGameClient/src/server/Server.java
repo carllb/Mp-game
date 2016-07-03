@@ -24,7 +24,7 @@ public class Server {
 
 		try {
 			ServerSocket ss = new ServerSocket(portNumber);
-
+			
 			while (!ss.isClosed()) {
 				System.out.println("wathing for client");
 				Socket sock = ss.accept();
